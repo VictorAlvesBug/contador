@@ -1,13 +1,43 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.rounded-4xl { border-radius: 2.0rem; -webkit-border-radius: 2.0rem; -moz-border-radius: 2.0rem; -ms-border-radius: 2.0rem; -o-border-radius: 2.0rem; }
+.rounded-5xl { border-radius: 2.5rem; -webkit-border-radius: 2.5rem; -moz-border-radius: 2.5rem; -ms-border-radius: 2.5rem; -o-border-radius: 2.5rem; }
+.rounded-6xl { border-radius: 3.0rem; -webkit-border-radius: 3.0rem; -moz-border-radius: 3.0rem; -ms-border-radius: 3.0rem; -o-border-radius: 3.0rem; }
+.rounded-7xl { border-radius: 3.5rem; -webkit-border-radius: 3.5rem; -moz-border-radius: 3.5rem; -ms-border-radius: 3.5rem; -o-border-radius: 3.5rem; }
+.rounded-8xl { border-radius: 4.0rem; -webkit-border-radius: 4.0rem; -moz-border-radius: 4.0rem; -ms-border-radius: 4.0rem; -o-border-radius: 4.0rem; }
+.rounded-9xl { border-radius: 4.5rem; -webkit-border-radius: 4.5rem; -moz-border-radius: 4.5rem; -ms-border-radius: 4.5rem; -o-border-radius: 4.5rem; }
+
+.fundo{
+  @apply w-full h-screen flex flex-col justify-center items-center bg-black;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.contador{
+  @apply w-40 h-48 rounded-4xl border-gray-100 border-4 flex flex-col justify-end items-center gap-6;
+}
+
+.display{
+  @apply text-gray-100;
+}
+
+.botoes{
+  @apply w-full p-3 flex flex-row justify-between items-center;
+}
+
+.botao{
+  @apply text-gray-100 w-9 h-9 rounded-full border-4 border-gray-100 hover:bg-gray-900 flex flex-col justify-center items-center;
+}
+
+.botao-subtrair{
+  @apply before:absolute before:w-3 before:h-0.5 before:rounded-md before:bg-gray-100;
+}
+
+.botao-adicionar{
+  @apply botao-subtrair;
+  @apply after:absolute after:w-0.5 after:h-3 after:rounded-md after:bg-gray-100;
+}
+
+.botao-resetar{
+  @apply before:absolute before:content-['↺'] before:text-lg before:-translate-y-0.5 before:border-gray-100;
 }
