@@ -1,26 +1,24 @@
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 
-type TNewState<T> = T | ((newState: T) => T);
-type TInitialState<T> = T | (() => T);
-type TValidation<T> = (newState: T) => boolean;
-
-export default function useStateWithValidation<T>(initialState: TInitialState<T>, validation: TValidation<T>){
+export default function useStateWithValidation<T>(
+    initialState: T | (() => T),
+    validation: (prevState: T) => boolean
+): [T, Dispatch<SetStateAction<T>>] {
     const [state, setState] = useState(initialState);
 
-    const setStateWithValidation = (newState: /*TNewState<T>*/T) => {
-        /*if(typeof newState === 'function'){
-            if(validation(newState())){
-                setState(newState);
-            }
-            return;
-        }*/
-
-        if(validation(newState)) {
-            setState(newState);
-            return;
+    const setStateWithValidation: Dispatch<SetStateAction<T>> = (newState: SetStateAction<T>) => {
+        const resolvedState = 
+            (typeof newState === 'function') 
+            ? (newState as (prevState: T) => T)(state) 
+            : newState;
+        if(validation(resolvedState)){
+            setState(resolvedState);
+            return true;
         }
-        console.log('ixi')
-    };
 
-    return [state, setStateWithValidation] as [T, React.Dispatch<React.SetStateAction<T>>];
+        console.error(`Erro: O valor "${resolvedState}" não é válido!`);
+        return false;
+    }
+
+    return [state, setStateWithValidation];
 }

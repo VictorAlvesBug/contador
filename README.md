@@ -2,9 +2,11 @@
 
 Contador simples desenvolvido em **React**.
 
-Tecnologias utilizadas:
+Conceitos e ferramentas utilizadas:
+
 - **React**;
 - **Typescript**;
 - **Tailwind**;
+- Hook customizado **useStateWithValidation**;
 
 Acesse: https://victoralvesbug.github.io/contador/

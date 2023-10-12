@@ -1,21 +1,16 @@
-import { useState } from 'react';
-import React from 'react';
 import useStateWithValidation from './hooks/stateWithValidation';
 
 function App() {
-  const validacaoValor = (novoValor: number | (() => number)) => {
+  const [valor, setValor] = useStateWithValidation<number>(0, (novoValor: number) => {
+    //return novoValor <= 10;
     return novoValor.toString().length <= 8;
-  }
-
-  const [valor, setValor] = useStateWithValidation<number>(0, validacaoValor);
+  });
 
   const adicionar = () => {
-    setValor(valor + 1);
-    //setValor(prev => prev + 1);
+    setValor(prev => prev + 1);
   };
   const subtrair = () => {
-    setValor(valor - 1);
-    //setValor(prev => prev - 1);
+    setValor(prev => prev - 1);
   };
   const resetar = () => {
     setValor(0);
